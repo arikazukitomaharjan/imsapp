@@ -1,0 +1,27 @@
+<ion-view style="background-color: rgb(237, 207, 221);" id="page8" title="Login" hide-nav-bar="true"
+          drag-content="false" class="background">
+    <ion-content class="has-header" padding="true">
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+            <img src="img/logo.png"></center>
+        <form class="list" id="login-form1">
+            <ion-list id="login-list2">
+                <label id="login-input1" class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input name="email" placeholder="Email" type="text" data-ng-model="input.email"
+                           value="admin@gmail.com">
+                </label>
+                <label id="login-input2" class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input name="password" placeholder="*******" type="password" data-ng-model="input.password"
+                           value="foo123">
+                </label>
+            </ion-list>
+            <div style="height: 40px;" class="spacer"></div>
+            <a class="button button-balanced  button-block" id="login" data-ng-click="login(input)">Log in</a>
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,41 @@
+<ion-view style="" id="page5" title="Report" data-ng-init="tokenCheck()">
+    <ion-content class="has-header" padding="true" data-ng-init="init()">
+        <div class="list">
+            <div ng-repeat="report in reports">
+                <div class="item item-divider">
+                    <div class="row">
+                        <h2>{{$index +1}} . {{report.name}} </h2>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+
+
+                        <div class="col">
+                            <h4>Qty:</h4>
+                            <p> <h6>{{report.quantity}}</h6></p>
+                        </div>
+                        <div class="col">
+                            <h4>Sale/Qty:</h4>
+                            <p> <h6>{{sale_per_quantity=(report.sale_price/report.quantity)}}</h6></p>
+                        </div>
+                        <div class="col">
+                            <h4>Saleprice:</h4>
+                            <p><h6>
+                            {{report.sale_price}}</h6></p>
+                        </div>
+                        <div class="col">
+                            <h4>Date:</h4>
+                            <p><h6>
+                            {{report.sale_date}}</h6></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

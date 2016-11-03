@@ -1,0 +1,194 @@
+<div class="float-button">
+     <span class="height-fix">
+        <a class="content">
+          <i class="ion-android-add" ng-click="addModal.show()"> </i>
+        </a>
+     </span>
+</div>
+<ion-view style="" id="page4" title="Product" data-ng-init="tokenCheck()">
+    <ion-content class="has-header" padding="true" data-ng-init="init()">
+        <div class="list">
+            <div ng-repeat="product in products">
+                <div class="item item-divider">
+                    <div class="row">
+                        <h2>{{$index +1}} .{{product.name}} </h2>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <h4>MRP</h4>
+                            <p><h6> {{product.cost_price}}</h6></p>
+                        </div>
+
+
+                        <div class="col">
+                            <h4>Rem stock:</h4>
+                            <p> <h6>{{product.stock}}</h6></p>
+                        </div>
+                        <div class="col">
+                            <h4>Sold:</h4>
+                            <p><h6>
+                            {{product.sold_quantity}}</h6></p>
+                        </div>
+                        <div class="col-10">
+                            <a class="ion-compose"
+                               data-ng-click="openEditModal(product.id,product.name,product.information,product.stock,product.cost_price,product.category_id,product.date_added)"
+                            ></a><br>
+                            <a class="ion-trash-b" data-ng-click="deleteProduct(product.id)"></a><br>
+                            <a class="ion-share"
+                               data-ng-click="openModal(product.id,product.name,product.MRP,product.stock,product.cost_price)"></a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <script id="productModal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar>
+                    <h1 class="title">Add Product</h1>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+
+                        <label class="item item-input">
+                            <span class="input-label">Name</span>
+                            <input name="name" ng-model="input.name" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Information</span>
+                            <input name="information" ng-model="input.information" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Stock</span>
+                            <input name="stock" ng-model="input.stock" type="number">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Cost price</span>
+                            <input name="information" ng-model="input.cost_price" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Category</span>
+                            <select name="category_id" ng-model="input.category_id"
+                                    class="select form-control"
+                                    ng-options="category.id as category.name for category in categories">
+                            </select>
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Date Added</span>
+                            <input name="date_added" ng-model="input.date_added" type="text">
+                        </label>
+
+
+                        <button class="button button-full button-positive" ng-click="addProduct(input)">Create</button>
+                        <button class="button button-full button-royal" ng-click="addModal.hide()">Cancel</button>
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+        <script id="editProductModal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar>
+                    <h1 class="title">Update Product</h1>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+
+                        <label class="item item-input">
+                            <span class="input-label">Name</span>
+                            <input name="name" ng-model="input.name" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Information</span>
+                            <input name="information" ng-model="input.information" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Stock</span>
+                            <input name="stock" ng-model="input.stock" type="number">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Cost price</span>
+                            <input name="information" ng-model="input.cost_price" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Category</span>
+                            <select name="category_id" ng-model="input.category_id"
+                                    class="select form-control"
+                                    ng-options="category.id as category.name for category in categories">
+                            </select>
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Date Added</span>
+                            <input name="date_added" ng-model="input.date_added" type="text">
+                        </label>
+
+
+                        <button class="button button-full button-positive" ng-click="editProduct(input)">Update</button>
+                        <button class="button button-full button-royal" ng-click="editModal.hide()">Cancel</button>
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+        <script id="saleProduct.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar>
+                    <h1 class="title">Sale Product</h1>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+
+                        <hr>
+
+                        <span ng-hide="true">{{input.id}}</span>
+                        <p>
+                        <center><b>Name :</b>{{input.name}}
+                        </p></center></p>
+
+                        <p>
+                        <center><b>Stock :</b>{{input.stock}}
+                        </center>
+                        </p>
+
+                        <p>
+                        <center><b>Costprice :</b>{{input.cost_price}}
+                        </center>
+                        </p> <p>
+                        <center><b>Total costprice :</b>{{input.total_cost_price}}
+                        </center>
+                        </p>
+                        <hr>
+
+                        <label class="item item-input">
+                            <span class="input-label">Quantity</span>
+                            <input name="quantity" data-ng-model="input.quantity" type="number"
+                                   data-ng-keyup="totalSale(input)">
+
+                        </label>
+                        <i style="color:red;">{{errmsg}}</i>
+
+
+                        <label class="item item-input">
+                            <span class="input-label">Price</span>
+                            <input name="price" data-ng-model="input.price" type="number" data-ng-keyup="totalSale()">
+                        </label>
+
+
+                        <label class="item item-input">
+                            <span class="input-label">Sale price</span>
+                            <input name="sale_price" data-ng-model="input.sale_price" type="text" ng-disabled="true">
+                        </label>
+
+
+                        <button class="button button-full button-positive" ng-click="saleProduct(input)">Sale</button>
+                        <button class="button button-full button-royal" ng-click="saleModal.hide()">Cancel</button>
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>

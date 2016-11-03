@@ -1,0 +1,114 @@
+<div class="float-button">
+     <span class="height-fix">
+        <a class="content">
+          <i class="ion-android-add" ng-click="addModal.show()"> </i>
+        </a>
+     </span>
+</div>
+
+<ion-view style="" id="page6" title="Expense" data-ng-init="tokenCheck()">
+    <ion-content class="has-header" padding="true" data-ng-init="init()">
+        <div class="list">
+            <div ng-repeat="expense in expenses" data-ng-click="btnShow()">
+                <div class="item item-divider">
+                    <div class="row">
+                        <h2>{{$index +1}} . {{expense.name}} </h2>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <h4>Cost</h4>
+                            <p><h6> {{expense.cost}}</h6></p>
+                        </div>
+
+
+                        <div class="col">
+                            <h4>Date:</h4>
+                            <p><h6>
+                            {{expense.date}}</h6></p>
+                        </div>
+                        <div class="col-10">
+                            <a class="ion-compose"
+                               data-ng-click="openModal(expense.id,expense.name,expense.description,expense.cost,expense.date)"
+                            ></a><br>
+                            <a class="ion-trash-b" data-ng-click="deleteExpense(expense.id)"></a><br>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+   
+        <script id="expenseModal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar>
+                    <h1 class="title">Add Expense</h1>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+
+                        <label class="item item-input">
+                            <span class="input-label">Name</span>
+                            <input name="name" ng-model="input.name" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Information</span>
+                            <input name="description" ng-model="input.description" type="text">
+                        </label>
+
+                        <label class="item item-input">
+                            <span class="input-label">Cost price</span>
+                            <input name="cost" ng-model="input.cost" type="text">
+                        </label>
+
+                        <label class="item item-input">
+                            <span class="input-label">Date</span>
+                            <input name="date" ng-model="input.date" type="text">
+                        </label>
+
+
+                        <button class="button button-full button-positive" ng-click="addExpense(input)">Create</button>
+                        <button class="button button-full button-royal" ng-click="addModal.hide()">Cancel</button>
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+        <script id="editProductModal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar>
+                    <h1 class="title">Edit Expense</h1>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+
+                        <label class="item item-input">
+                            <span class="input-label">Name</span>
+                            <input name="name" ng-model="input.name" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Description</span>
+                            <input name="description" ng-model="input.description" type="text">
+                        </label>
+
+                        <label class="item item-input">
+                            <span class="input-label">Cost price</span>
+                            <input name="cost" ng-model="input.cost" type="text">
+                        </label>
+
+                        <label class="item item-input">
+                            <span class="input-label">Date</span>
+                            <input name="date" ng-model="input.date" type="text">
+                        </label>
+
+
+                        <button class="button button-full button-positive" ng-click="editExpense(input)">Update</button>
+                        <button class="button button-full button-royal" ng-click="editModal.hide()">Cancel</button>
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>
